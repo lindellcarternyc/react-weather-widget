@@ -1,5 +1,6 @@
 import * as React from 'react'
 import './App.css'
+import './wireframe.css'
 
 const MOCK_DATA = [
   {
