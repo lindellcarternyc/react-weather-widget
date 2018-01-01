@@ -1,0 +1,13 @@
+.forecast--day--name, 
+.forecast--day--hi-temp, 
+.forecast--day--lo-temp {
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.forecast--day--icon {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid salmon;
+  margin-bottom: 0.5rem;
+}
