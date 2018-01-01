@@ -52,3 +52,22 @@
   font-size: 1.5rem;
   margin-bottom: .5rem;
 }
+
+.forecast {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.forecast--day--name {
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.forecast--day--icon {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid salmon;
+  margin-bottom: 0.5rem;
+}
