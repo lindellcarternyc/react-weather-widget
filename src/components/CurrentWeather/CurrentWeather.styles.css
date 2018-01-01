@@ -14,3 +14,7 @@
   font-size: 1.5rem;
   margin-bottom: .5rem;
 }
+
+.current-weather__icon--wrapper img {
+  width: 50px;
+}

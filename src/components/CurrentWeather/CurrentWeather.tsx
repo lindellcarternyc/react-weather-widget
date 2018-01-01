@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import './CurrentWeather.styles.css'
 
+const icon = require('../../icons/png/cloud.png')
+
 interface CurrentWeatherProps {
   unit: 'C' | 'F'
 }
@@ -15,7 +17,7 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
         <p>Clear</p>
       </div>
       <div className='current-weather__icon--wrapper'>
-        Icon
+        <img src={icon}/>
       </div>
     </div>
   )
