@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import './ForecastDay.styles.css'
+
 interface ForecastDayProps {
   day: string
   unit: 'C' | 'F'
