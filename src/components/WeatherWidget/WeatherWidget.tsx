@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as moment from 'moment'
 
 import WeatherWidgetHeader from '../WeatherWidgetHeader/WeatherWidgetHeader'
-import CurrentWeather from './CurrentWeather'
+import CurrentWeather from '../CurrentWeather/CurrentWeather'
 import Forecast from './Forecast'
 
 import './WeatherWidget.styles.css'
