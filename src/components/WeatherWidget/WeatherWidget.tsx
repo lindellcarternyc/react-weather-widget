@@ -5,6 +5,8 @@ import WeatherWidgetHeader from './WeatherWidgetHeader'
 import CurrentWeather from './CurrentWeather'
 import Forecast from './Forecast'
 
+import './WeatherWidget.styles.css'
+
 interface WeatherWidgetProps {
   weatherdata: {
     updated: moment.Moment
