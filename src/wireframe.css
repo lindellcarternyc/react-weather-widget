@@ -1,11 +1,3 @@
-.weather-widget {
-  border:  1px solid black;
-  border-radius: 0.5rem;
-  width:  100%;
-  max-width:  400px;
-  margin: 20px auto 0;
-}
-
 .weather-widget__header {
   /* border: 1px solid red; */
   position: relative;
