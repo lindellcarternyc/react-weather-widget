@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import './WeatherWidgetHeader.styles.css'
+
 interface WeatherWidgetHeaderProps {
   updated: string
 }
