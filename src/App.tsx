@@ -2,7 +2,7 @@ import * as React from 'react'
 import './App.css'
 import './wireframe.css'
 
-import {  WeatherWidget } from './components'
+import { WeatherWidget } from './components'
 
 const MOCK_DATA = [
   {
