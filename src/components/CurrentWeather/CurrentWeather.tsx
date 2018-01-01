@@ -6,14 +6,15 @@ import './CurrentWeather.styles.css'
 
 interface CurrentWeatherProps {
   unit: 'C' | 'F'
+  city: string
 }
 
 const CurrentWeather = (props: CurrentWeatherProps) => {
-  const { unit } = props
+  const { unit, city } = props
   return (
     <div className='current-weather'>
       <div className='current-weather--text'>
-        <p>8&deg;{unit} in New York</p>
+        <p>8&deg;{unit} in {city}</p>
         <p>Clear</p>
       </div>
       <WeatherIcon size='large' name='moon'/>
