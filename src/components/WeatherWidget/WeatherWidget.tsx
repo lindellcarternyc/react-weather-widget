@@ -23,7 +23,7 @@ const WeatherWidget = (props: WeatherWidgetProps) => {
 
   return (
     <div className='weather-widget'>
-      <WeatherWidgetHeader updated={dt}/>
+      <WeatherWidgetHeader updated={dt} unit={unit}/>
       <CurrentWeather unit={unit} />
       <Forecast {...weatherdata}/>
     </div>
