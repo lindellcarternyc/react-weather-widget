@@ -4,27 +4,13 @@ import './wireframe.css'
 
 import { WeatherWidget } from './components'
 
-const MOCK_DATA = [
-  {
-    day: 'MON'
-  },
-  {
-    day: 'TUE'
-  },
-  {
-    day: 'WED'
-  },
-  {
-    day: 'THU'
-  },
-  {
-    day: 'FRI'
-  }
-]
+import { MOCK_DATA } from './mocks'
+
+const mockData = MOCK_DATA()
 
 const MOCK_WEATHER_DATA = {
   unit: 'F' as 'F',
-  forecastdata: MOCK_DATA
+  forecastdata: mockData
 }
 
 class App extends React.Component {
