@@ -16,9 +16,11 @@ interface AppState {
 }
 
 import { Locator } from './locator'
+import { WeatherService } from './weather-service'
 
 class App extends React.Component<{}, AppState> {
   private locator: Locator
+  private weatherService: WeatherService
 
   constructor() {
     super({})
@@ -34,6 +36,7 @@ class App extends React.Component<{}, AppState> {
   componentDidMount() {
     this.locator.getPosition()
       .then(pos => {
+        this.weatherService = new WeatherService(pos)
         this.locator.getCityName(pos)
           .then(res => {
             const position = pos
@@ -42,12 +45,26 @@ class App extends React.Component<{}, AppState> {
               position,
               city
             })
+            this.setState(
+              {
+                position,
+                city
+              },
+              () => {
+                this.getWeather()
+              }
+            )
           })
           .catch()
       })
       .catch(err => {
         console.warn(err)
       })
+  }
+
+  getWeather() {
+    // tslint:disable-next-line:no-console
+    this.weatherService.getWeather()
   }
 
   render() {
