@@ -1,20 +1,3 @@
-.current-weather {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  border-bottom: 1px solid black;
-  padding-bottom: 0.5rem;
-}
-
-.current-weather--text {
-  text-align: left;
-  padding-left: 1rem;
-}
-
-.current-weather--text p:first-child {
-  font-size: 1.5rem;
-  margin-bottom: .5rem;
-}
-
 .forecast {
   padding-top: 1rem;
   display: flex;
