@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import './CurrentWeather.styles.css'
+import WeatherIcon from '../WeatherIcon/WeatherIcon'
 
-const icon = require('../../icons/png/cloud.png')
+import './CurrentWeather.styles.css'
 
 interface CurrentWeatherProps {
   unit: 'C' | 'F'
@@ -16,9 +16,7 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
         <p>8&deg;{unit} in New York</p>
         <p>Clear</p>
       </div>
-      <div className='current-weather__icon--wrapper'>
-        <img src={icon}/>
-      </div>
+      <WeatherIcon size='large' name='moon'/>
     </div>
   )
 }
