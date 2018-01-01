@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import './Forecast.styles.css'
+
 import ForecastDay, { } from './ForecastDay'
 
 interface ForecastProps {
