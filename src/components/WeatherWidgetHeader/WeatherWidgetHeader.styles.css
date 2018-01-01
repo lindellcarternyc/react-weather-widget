@@ -2,6 +2,7 @@
   position: relative;
   height: 2rem;
   font-size: 0.85rem;
+  margin-bottom: 0.5rem;
 }
 
 .weather-widget__header--icon {
@@ -23,4 +24,8 @@
   top: 50%;
   transform: translateY(-50%);
   right: 1rem;
+  border: 1px solid #284b63;
+  padding: 0.125rem 0.25rem;
+  background: transparent;
+  color: #284b63;
 }
