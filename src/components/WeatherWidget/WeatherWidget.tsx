@@ -3,7 +3,7 @@ import * as moment from 'moment'
 
 import WeatherWidgetHeader from '../WeatherWidgetHeader/WeatherWidgetHeader'
 import CurrentWeather from '../CurrentWeather/CurrentWeather'
-import Forecast from './Forecast'
+import Forecast from '../Forecast/Forecast'
 
 import './WeatherWidget.styles.css'
 
