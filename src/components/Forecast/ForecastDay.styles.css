@@ -5,13 +5,6 @@
   margin-bottom: 0.5rem;
 }
 
-.forecast--day--icon {
-  width: 2rem;
-  height: 2rem;
-  /* border: 1px solid salmon; */
-  margin-bottom: 0.5rem;
-}
-
-.forecast--day--icon img {
-  width: 2rem;
+.forecast--day--hi-temp {
+  margin-top: 0.5rem;
 }
