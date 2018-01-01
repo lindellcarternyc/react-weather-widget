@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import WeatherWidgetHeader from './WeatherWidgetHeader'
 import CurrentWeather from './CurrentWeather'
+import Forecast from './Forecast'
 
 interface WeatherWidgetProps {
   weatherdata: {
@@ -12,26 +13,14 @@ interface WeatherWidgetProps {
 
 const WeatherWidget = (props: WeatherWidgetProps) => {
   const { weatherdata } = props
-  const { forecastdata, unit } = weatherdata
-  const days = forecastdata.map(data => {
-    return (
-      <div key={data.day} className='forecast--day'>
-        <p className='forecast--day--name'>{data.day}</p>
-        <div className='forecast--day--icon'>I</div>
-        <p className='forecast--day--hi-temp'>8&deg;{unit}</p>
-        <p className='forecast--day--lo-temp'>8&deg;{unit}</p>
-      </div>
-    )
-  })
+  const { unit } = weatherdata
 
   return (
     <div className='weather-widget'>
-          <WeatherWidgetHeader />
-          <CurrentWeather unit={unit} />
-          <div className='forecast'>
-            {days}
-          </div>
-        </div>
+      <WeatherWidgetHeader />
+      <CurrentWeather unit={unit} />
+      <Forecast {...weatherdata}/>
+    </div>
   )
 }
 
