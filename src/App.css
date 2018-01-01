@@ -10,7 +10,7 @@
 }
 
 .weather-widget__header {
-  /* border: 1px solid red; */
+  border: 1px solid red;
   position: relative;
   height: 2rem;
   font-size: 0.85rem;
@@ -18,19 +18,37 @@
 
 .weather-widget__header--icon {
   position: absolute;
-  /* transform: translateY(-50%); */
-  top: -25%;
+  transform: translateY(-50%);
+  /* top: -25%; */
+  top: 50%;
   left: 1rem;
 }
 
 .weather-widget__header--info {
   position: absolute;
-  top: -25%;
+  top: 50%;
+  transform: translateY(-50%);
   left: 2rem;
 }
 
 .weather-widget__header--button {
   position: absolute;
-  top: 25%;
+  top: 50%;
+  transform: translateY(-50%);
   right: 1rem;
+}
+
+.current-weather {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.current-weather--text {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.current-weather--text p:first-child {
+  font-size: 1.5rem;
+  margin-bottom: .5rem;
 }
