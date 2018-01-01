@@ -27,8 +27,8 @@ class App extends React.Component {
         <div key={data.day} className='forecast--day'>
           <p className='forecast--day--name'>{data.day}</p>
           <div className='forecast--day--icon'>I</div>
-          <p className='forecast--day--hi--temp'>8&deg;F</p>
-          <p className='forecast-day--lo-temp'>8&deg;F</p>
+          <p className='forecast--day--hi-temp'>8&deg;F</p>
+          <p className='forecast--day--lo-temp'>8&deg;F</p>
         </div>
       )
     })

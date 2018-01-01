@@ -1,12 +1,13 @@
 .weather-widget {
   border:  1px solid black;
+  border-radius: 0.5rem;
   width:  100%;
   max-width:  400px;
   margin: 20px auto 0;
 }
 
 .weather-widget__header {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   position: relative;
   height: 2rem;
   font-size: 0.85rem;
@@ -37,6 +38,8 @@
 .current-weather {
   display: grid;
   grid-template-columns: 4fr 1fr;
+  border-bottom: 1px solid black;
+  padding-bottom: 0.5rem;
 }
 
 .current-weather--text {
@@ -56,7 +59,7 @@
   margin-bottom: 1rem;
 }
 
-.forecast--day--name {
+.forecast--day--name, .forecast--day--hi-temp, .forecast--day--lo-temp {
   font-size: 0.75rem;
   margin-bottom: 0.5rem;
 }
@@ -67,3 +70,4 @@
   border: 1px solid salmon;
   margin-bottom: 0.5rem;
 }
+
