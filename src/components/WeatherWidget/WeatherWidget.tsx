@@ -1,6 +1,25 @@
 import * as React from 'react'
 
-const WeatherWidget = () => {
+interface WeatherWidgetProps {
+  weatherdata: {
+    forecastdata: {day: string}[]
+  }
+}
+
+const WeatherWidget = (props: WeatherWidgetProps) => {
+  const { weatherdata } = props
+  const { forecastdata } = weatherdata
+  const days = forecastdata.map(data => {
+    return (
+      <div key={data.day} className='forecast--day'>
+        <p className='forecast--day--name'>{data.day}</p>
+        <div className='forecast--day--icon'>I</div>
+        <p className='forecast--day--hi-temp'>8&deg;F</p>
+        <p className='forecast--day--lo-temp'>8&deg;F</p>
+      </div>
+    )
+  })
+
   return (
     <div className='weather-widget'>
           <div className='weather-widget__header'>
@@ -18,7 +37,7 @@ const WeatherWidget = () => {
             </div>
           </div>
           <div className='forecast'>
-            {}
+            {days}
           </div>
         </div>
   )
