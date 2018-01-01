@@ -14,17 +14,18 @@ interface WeatherWidgetProps {
     forecastdata: {day: string}[]
   }
   dt: string
+  city: string
 }
 
 const WeatherWidget = (props: WeatherWidgetProps) => {
-  const { weatherdata, dt } = props
+  const { weatherdata, dt, city } = props
   const { unit } = weatherdata
   // const updatedStr = updatedAt.format()
 
   return (
     <div className='weather-widget'>
       <WeatherWidgetHeader updated={dt} unit={unit}/>
-      <CurrentWeather unit={unit} />
+      <CurrentWeather unit={unit} city={city} />
       <Forecast {...weatherdata}/>
     </div>
   )
