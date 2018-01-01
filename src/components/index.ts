@@ -1,5 +1,5 @@
 import WeatherWidget from './WeatherWidget'
 
-export default {
+export  {
   WeatherWidget
 }

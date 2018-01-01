@@ -2,6 +2,8 @@ import * as React from 'react'
 import './App.css'
 import './wireframe.css'
 
+import {  WeatherWidget } from './components'
+
 const MOCK_DATA = [
   {
     day: 'MON'
@@ -35,6 +37,7 @@ class App extends React.Component {
 
     return (
       <div className='App'>
+        <WeatherWidget />
         <div className='weather-widget'>
           <div className='weather-widget__header'>
               <p className='weather-widget__header--icon'>L</p>
