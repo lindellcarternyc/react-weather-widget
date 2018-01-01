@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import WeatherWidgetHeader from './WeatherWidgetHeader'
+import CurrentWeather from './CurrentWeather'
 
 interface WeatherWidgetProps {
   weatherdata: {
@@ -26,7 +27,7 @@ const WeatherWidget = (props: WeatherWidgetProps) => {
   return (
     <div className='weather-widget'>
           <WeatherWidgetHeader />
-          
+          <CurrentWeather unit={unit} />
           <div className='forecast'>
             {days}
           </div>
