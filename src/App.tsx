@@ -11,40 +11,54 @@ const mockData = MOCK_DATA()
 interface AppState {
   updated: moment.Moment
   dt: string
+  position?: Position
+  city?: string
 }
 
-class App extends React.Component<{}, AppState> {
-  timer: number | null | NodeJS.Timer = null
+import { Locator } from './locator'
 
-  state = {
-    updated: mockData.updated,
-    dt: ''
+class App extends React.Component<{}, AppState> {
+  private locator: Locator
+
+  constructor() {
+    super({})
+
+    this.locator = new Locator()
+
+    this.state = {
+      updated: mockData.updated,
+      dt: ''
+    }
   }
 
   componentDidMount() {
-    // this.timer = setInterval(
-    //   () => {
-    //   // tslint:disable-next-line:no-console
-    //     this.tick()
-    // },
-    //   1000
-    // )
-  }
-
-  tick = () => {
-    const { updated } = this.state
-    const now = moment()
-
-    const diff = parseInt(updated.format('s'), 10) - parseInt(now.format('s'), 10)
-    const dt = moment.duration(diff, 'seconds').humanize(true)
-    this.setState({dt})
+    this.locator.getPosition()
+      .then(pos => {
+        this.locator.getCityName(pos)
+          .then(res => {
+            const position = pos
+            const city = res as string
+            this.setState({
+              position,
+              city
+            })
+          })
+          .catch()
+      })
+      .catch(err => {
+        console.warn(err)
+      })
   }
 
   render() {
-    const { dt } = this.state
+    const { dt, city } = this.state
     return (
       <div className='App'>
-        <WeatherWidget dt={dt} weatherdata={mockData} />
+        <WeatherWidget 
+          city={city || 'Loading...'}
+          dt={dt} 
+          weatherdata={mockData} 
+        />
       </div>
     )
   }
