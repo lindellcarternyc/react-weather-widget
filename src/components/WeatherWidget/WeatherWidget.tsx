@@ -26,15 +26,7 @@ const WeatherWidget = (props: WeatherWidgetProps) => {
   return (
     <div className='weather-widget'>
           <WeatherWidgetHeader />
-          <div className='current-weather'>
-            <div className='current-weather--text'>
-              <p>8&deg;{unit} in New York</p>
-              <p>Clear</p>
-            </div>
-            <div className='current-weather__icon--wrapper'>
-              Icon
-            </div>
-          </div>
+          
           <div className='forecast'>
             {days}
           </div>
