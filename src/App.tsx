@@ -32,7 +32,6 @@ class App extends React.Component {
     return (
       <div className='App'>
         <WeatherWidget weatherdata={MOCK_WEATHER_DATA} />
-        
       </div>
     )
   }
