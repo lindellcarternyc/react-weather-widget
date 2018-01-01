@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import WeatherWidgetHeader from './WeatherWidgetHeader'
+
 interface WeatherWidgetProps {
   weatherdata: {
     unit: 'C' | 'F'
@@ -23,11 +25,7 @@ const WeatherWidget = (props: WeatherWidgetProps) => {
 
   return (
     <div className='weather-widget'>
-          <div className='weather-widget__header'>
-              <p className='weather-widget__header--icon'>L</p>
-              <p className='weather-widget__header--info'>Weather * Updated 5 minutes ago</p>
-            <button className='weather-widget__header--button'>+</button>
-          </div>
+          <WeatherWidgetHeader />
           <div className='current-weather'>
             <div className='current-weather--text'>
               <p>8&deg;{unit} in New York</p>
