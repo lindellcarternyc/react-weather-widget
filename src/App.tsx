@@ -23,6 +23,7 @@ const MOCK_DATA = [
 ]
 
 const MOCK_WEATHER_DATA = {
+  unit: 'F' as 'F',
   forecastdata: MOCK_DATA
 }
 
