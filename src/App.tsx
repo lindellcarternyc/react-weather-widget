@@ -23,13 +23,13 @@ class App extends React.Component<{}, AppState> {
   }
 
   componentDidMount() {
-    this.timer = setInterval(
-      () => {
-      // tslint:disable-next-line:no-console
-        this.tick()
-    },
-      1000
-    )
+    // this.timer = setInterval(
+    //   () => {
+    //   // tslint:disable-next-line:no-console
+    //     this.tick()
+    // },
+    //   1000
+    // )
   }
 
   tick = () => {
