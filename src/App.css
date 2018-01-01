@@ -1,3 +1,36 @@
 .App {
   text-align: center;
 }
+
+.weather-widget {
+  border:  1px solid black;
+  width:  100%;
+  max-width:  400px;
+  margin: 20px auto 0;
+}
+
+.weather-widget__header {
+  /* border: 1px solid red; */
+  position: relative;
+  height: 2rem;
+  font-size: 0.85rem;
+}
+
+.weather-widget__header--icon {
+  position: absolute;
+  /* transform: translateY(-50%); */
+  top: -25%;
+  left: 1rem;
+}
+
+.weather-widget__header--info {
+  position: absolute;
+  top: -25%;
+  left: 2rem;
+}
+
+.weather-widget__header--button {
+  position: absolute;
+  top: 25%;
+  right: 1rem;
+}
