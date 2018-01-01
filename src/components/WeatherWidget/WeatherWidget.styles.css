@@ -1,0 +1,8 @@
+.weather-widget {
+  border:  1px solid #b4b8ab;
+  border-radius: 0.5rem;
+  width:  100%;
+  max-width:  350px;
+  margin: 40px auto 0;
+  background-color: white;
+}
