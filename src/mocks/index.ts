@@ -11,10 +11,18 @@ for (let i = 1; i <= 4; i++) {
   days.push(nextDay)
 }
 
-export const MOCK_DATA = () => {
+export const MOCK_FORECAST_DATA = () => {
   return days.map(d => {
     return {
       day: d
     }
   })
+}
+
+export const MOCK_DATA = () => {
+  return {
+    updated: NOW,
+    unit: 'F' as 'F',
+    forecastdata: MOCK_FORECAST_DATA()
+  }
 }
