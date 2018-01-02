@@ -1,4 +1,6 @@
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
+
+import API_KEY from './constants'
 
 export interface ForecastDay {
   high: number
@@ -12,7 +14,8 @@ export interface Forecast {
 
 export class WeatherService {
   private position: Position
-  private apiKey = '5b7088494172b5ef2b552762142abb61'
+  // Your key here
+  private apiKey = API_KEY.OPEN_WEATHER
 
   constructor(position: Position) {
     this.position = position
@@ -47,27 +50,6 @@ export class WeatherService {
       .catch(err => {
         reject(err)
       })
-    })
-  }
-
-  parseForecastResponse(
-    response: AxiosResponse<{
-        list: {
-          temp: {
-            max: number, min: number
-          },
-          weather: {
-            main: string
-          }[]
-        }[]
-    }>
-  ): ForecastDay[] {
-    return response.data.list.map(item => {
-      return {
-        high: item.temp.max,
-        low: item.temp.min,
-        description: item.weather[0].main
-      }
     })
   }
 }

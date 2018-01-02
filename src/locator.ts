@@ -19,6 +19,8 @@ interface Client {
   ) => void
 }
 
+import API_KEY from './constants'
+
 export class Locator {
   private client: Client
   constructor() {
@@ -26,7 +28,8 @@ export class Locator {
     // tslint:disable-next-line:no-console
     console.log('created new locator...')
     this.client = createClient({
-      key: 'AIzaSyAM13PxSyDBGfg_SQHUC6HGgPvogT3GofA'
+      // 'Your key here'
+      key: API_KEY.GOOGLE_MAPS
     })
     // client.reverseGeocode()
   }
