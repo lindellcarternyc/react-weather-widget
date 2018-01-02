@@ -64,7 +64,13 @@ class App extends React.Component<{}, AppState> {
 
   getWeather() {
     // tslint:disable-next-line:no-console
-    this.weatherService.getWeather()
+    this.weatherService.getForecast()
+      .then(data => {
+        console.dir(data)
+      })
+      .catch(err => {
+        console.warn(err)
+      })
   }
 
   render() {
