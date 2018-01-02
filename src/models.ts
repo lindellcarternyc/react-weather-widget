@@ -4,3 +4,7 @@ export interface ForecastDay {
   low: number // Low temp
   conditions: string // Used to get icon name
 }
+
+export interface Forecast {
+  days: ForecastDay[]
+}
