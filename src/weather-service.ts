@@ -2,15 +2,7 @@ import axios from 'axios'
 
 import API_KEY from './constants'
 
-export interface ForecastDay {
-  high: number
-  low: number
-  description: string
-}
-
-export interface Forecast {
-  days: ForecastDay[]
-}
+import { ForecastDayData }  from './models'
 
 export class WeatherService {
   private position: Position
@@ -24,17 +16,19 @@ export class WeatherService {
     console.dir(this.position)
   }
 
-  getForecast(): Promise<Forecast> {
+  getForecast(): Promise<ForecastDayData[]> {
     const { coords } = this.position
     const { latitude, longitude } = coords
     const positionParam = `lat=${latitude}&lon=${longitude}`
     // tslint:disable-next-line:max-line-length
     const url = `http://api.openweathermap.org/data/2.5/forecast/daily?${positionParam}&units=imperial&cnt=5&APPID=${this.apiKey}`
-    return new Promise<Forecast>((resolve, reject) => {
+    return new Promise<ForecastDayData[]>((resolve, reject) => {
       axios.get(url)
       .then(response => {
         const data = response.data.list
-        const days = data.map((item: {temp: {min: number, max: number}, weather: {main: string}[]}) => {
+        const days: ForecastDayData[] = data.map(
+          (item: {temp: {min: number, max: number}, weather: {main: string}[]}
+        ) => {
           const { temp, weather } = item
           return {
             high: temp.max,
@@ -42,10 +36,7 @@ export class WeatherService {
             description: weather[0].main
           }
         })
-        const forecast: Forecast = {
-          days
-        }
-        resolve(forecast)
+        resolve(days)
       })
       .catch(err => {
         reject(err)
