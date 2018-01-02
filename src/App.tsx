@@ -9,11 +9,11 @@ import { MOCK_DATA  } from './mocks'
 const mockData = MOCK_DATA()
 
 import { Locator } from './locator'
-import { WeatherService, Forecast, } from './weather-service'
+import { WeatherService } from './weather-service'
+import { Forecast, ForecastDay } from './models'
 
 interface AppState {
   updated: moment.Moment
-  dt: string
   position?: Position
   city?: string,
   forecast?: Forecast
@@ -30,7 +30,6 @@ class App extends React.Component<{}, AppState> {
 
     this.state = {
       updated: mockData.updated,
-      dt: ''
     }
   }
 
@@ -44,8 +43,8 @@ class App extends React.Component<{}, AppState> {
       .catch()
   }
 
-  updateLocation(): Promise<'success'> {
-    return new Promise<'success'>((resolve, reject) => {
+  updateLocation(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
       this.locator.getPosition()
       .then(position => {
         this.locator.getCityName(position)
@@ -57,7 +56,7 @@ class App extends React.Component<{}, AppState> {
               position,
               city: city as string
             },
-            () => resolve('success')
+            () => resolve()
         )
         })
         .catch(err => {
@@ -70,17 +69,32 @@ class App extends React.Component<{}, AppState> {
     })
   }
 
-  updateForecast = (): Promise<'success'> => {
-    return new Promise<'success'>((resolve, reject) => {
+  updateForecast = (): Promise<void> => {
+    return new Promise<void>((resolve, reject) => {
       this.weatherService.getForecast()
-      .then(forecast => {
+      .then(forecastDayDataList => {
         const updated = moment()
+        const days: ForecastDay[] = forecastDayDataList.map((data, idx) => {
+          let name: string = ''
+          if (idx === 0 ) {
+            name = updated.format('ddd')
+          } else {
+            name = moment(updated).add(idx, 'days').format('ddd')
+          }
+          return {
+            name,
+            data
+          }
+        })
+        const forecast: Forecast = {
+          days
+        }
         this.setState(
           {
             updated,
             forecast
           },
-          () => resolve('success')
+          () => resolve()
       )
       })
       .catch(err => {
@@ -89,26 +103,15 @@ class App extends React.Component<{}, AppState> {
     })
   }
 
-  getWeather() {
-    // tslint:disable-next-line:no-console
-    this.weatherService.getForecast()
-      .then(data => {
-        console.dir(data)
-      })
-      .catch(err => {
-        console.warn(err)
-      })
-  }
-
   render() {
-    const { dt, city, forecast } = this.state
+    const { updated, city, forecast } = this.state
     return (
       <div className='App'>
         <WeatherWidget 
           city={city || 'Loading...'}
-          dt={dt} 
-          weatherdata={mockData}
-          forecast={forecast!} 
+          updated={updated}
+          unit='F'
+          forecast={forecast} 
         />
       </div>
     )
