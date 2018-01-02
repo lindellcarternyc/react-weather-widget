@@ -3,10 +3,11 @@ import * as React from 'react'
 import './WeatherWidgetHeader.styles.css'
 
 import * as moment from 'moment'
+import { Unit } from '../../models'
 
 interface WeatherWidgetHeaderProps {
   updated: moment.Moment
-  unit: 'C' | 'F'
+  unit: Unit
 }
 
 interface HeaderState {
