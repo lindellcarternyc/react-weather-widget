@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import API_KEY from './constants'
 
-import { ForecastDayData }  from './models'
+import { ForecastDayData, Unit, Temperature }  from './models'
 
 export class WeatherService {
   private position: Position
@@ -30,9 +30,11 @@ export class WeatherService {
           (item: {temp: {min: number, max: number}, weather: {main: string}[]}
         ) => {
           const { temp, weather } = item
+          const high = new Temperature(temp.max, Unit.F)
+          const low = new Temperature(temp.min, Unit.F)
           return {
-            high: temp.max,
-            low: temp.min,
+            high,
+            low,
             description: weather[0].main
           }
         })
