@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import WeatherIcon from '../WeatherIcon/WeatherIcon'
+import WeatherIcon, { IconSize } from '../WeatherIcon/WeatherIcon'
 
 import './CurrentWeather.styles.css'
 
@@ -19,7 +19,7 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
         <p>8&deg;{unit} in {city}</p>
         <p>Clear</p>
       </div>
-      <WeatherIcon size='large' name='moon'/>
+      <WeatherIcon size={IconSize.large} name='moon'/>
     </div>
   )
 }

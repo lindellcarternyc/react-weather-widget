@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import './ForecastDay.styles.css'
 
-import WeatherIcon from '../WeatherIcon/WeatherIcon'
+import WeatherIcon, { IconSize } from '../WeatherIcon/WeatherIcon'
 
 import * as models from '../../models'
 
@@ -18,7 +18,7 @@ const ForecastDay = (props: ForecastDayProps) => {
   return (
     <div className='forecast--day'>
       <p className='forecast--day--name'>{name}</p>
-      <WeatherIcon size='small' name='windy'/>
+      <WeatherIcon size={IconSize.small} name='windy'/>
       <p className='forecast--day--hi-temp'>{high.toFixed(0)}&deg;{unit}</p>
       <p className='forecast--day--lo-temp'>{low.toFixed(0)}&deg;{unit}</p>
     </div>
