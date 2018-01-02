@@ -17,3 +17,11 @@ export enum Unit {
   C = 'C',
   F = 'F'
 }
+
+export const toggleUnit = (unit: Unit): Unit => {
+  if (unit === Unit.C) {
+    return Unit.F
+  } else {
+    return Unit.C
+  }
+}
