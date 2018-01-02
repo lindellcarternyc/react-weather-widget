@@ -5,6 +5,8 @@ import WeatherWidgetHeader from '../WeatherWidgetHeader/WeatherWidgetHeader'
 import CurrentWeather from '../CurrentWeather/CurrentWeather'
 import Forecast from '../Forecast/Forecast'
 
+import * as weatherService from '../../weather-service'
+
 import './WeatherWidget.styles.css'
 
 interface WeatherWidgetProps {
@@ -15,10 +17,11 @@ interface WeatherWidgetProps {
   }
   dt: string
   city: string
+  forecast?: weatherService.Forecast
 }
 
 const WeatherWidget = (props: WeatherWidgetProps) => {
-  const { weatherdata, dt, city } = props
+  const { weatherdata, dt, city, forecast } = props
   const { unit } = weatherdata
   // const updatedStr = updatedAt.format()
 
@@ -26,7 +29,9 @@ const WeatherWidget = (props: WeatherWidgetProps) => {
     <div className='weather-widget'>
       <WeatherWidgetHeader updated={dt} unit={unit}/>
       <CurrentWeather unit={unit} city={city} />
-      <Forecast {...weatherdata}/>
+      {forecast && 
+        <Forecast {...weatherdata} forecast={forecast} />
+      }
     </div>
   )
 }

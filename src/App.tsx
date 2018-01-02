@@ -101,13 +101,14 @@ class App extends React.Component<{}, AppState> {
   }
 
   render() {
-    const { dt, city } = this.state
+    const { dt, city, forecast } = this.state
     return (
       <div className='App'>
         <WeatherWidget 
           city={city || 'Loading...'}
           dt={dt} 
-          weatherdata={mockData} 
+          weatherdata={mockData}
+          forecast={forecast!} 
         />
       </div>
     )
