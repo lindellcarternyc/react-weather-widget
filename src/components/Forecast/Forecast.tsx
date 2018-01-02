@@ -4,23 +4,20 @@ import './Forecast.styles.css'
 
 import ForecastDay from './ForecastDay'
 
-import * as weatherService from '../../weather-service'
-
+import * as models from '../../models'
 interface ForecastProps {
   unit: 'C' | 'F'
-  forecastdata: {day: string}[]
-  forecast: weatherService.Forecast
+  forecast: models.Forecast
 }
 
 const Forecast = (props: ForecastProps) => {
-  const { unit, forecast, forecastdata } = props
+  const { unit, forecast } = props
   return (
     <div className='forecast'>
       {forecast.days.map((day, idx) => {
         return (
           <ForecastDay 
             key={idx}
-            day={forecastdata[idx].day}
             unit={unit}
             forecastday={day}
           />
