@@ -22,6 +22,7 @@ export enum IconSize {
 interface Props {
   size: IconSize
   name: string
+  description: string
 }
 
 const WeatherIcon = (props: Props) => {
