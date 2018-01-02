@@ -1,12 +1,12 @@
 import axios, { AxiosResponse } from 'axios'
 
-interface ForecastDay {
+export interface ForecastDay {
   high: number
   low: number
   description: string
 }
 
-interface Forecast {
+export interface Forecast {
   days: ForecastDay[]
 }
 
