@@ -4,10 +4,6 @@ import * as moment from 'moment'
 
 import { WeatherWidget } from './components'
 
-import { MOCK_DATA  } from './mocks'
-
-const mockData = MOCK_DATA()
-
 import { Locator } from './locator'
 import { WeatherService } from './weather-service'
 import { Forecast, ForecastDay } from './models'
@@ -29,7 +25,7 @@ class App extends React.Component<{}, AppState> {
     this.locator = new Locator()
 
     this.state = {
-      updated: mockData.updated,
+      updated: moment()
     }
   }
 
