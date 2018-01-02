@@ -15,14 +15,15 @@ interface WeatherWidgetProps {
   city: string
   unit: models.Unit
   forecast?: models.Forecast
+  toggleUnit: () => void
 }
 
 const WeatherWidget = (props: WeatherWidgetProps) => {
-  const { updated, city, forecast, unit } = props
+  const { updated, city, forecast, unit, toggleUnit } = props
 
   return (
     <div className='weather-widget'>
-      <WeatherWidgetHeader updated={updated} unit={unit}/>
+      <WeatherWidgetHeader updated={updated} unit={unit} toggleUnit={toggleUnit}/>
       <CurrentWeather unit={unit} city={city} />
       {forecast && 
         <Forecast unit={unit} forecast={forecast} />
