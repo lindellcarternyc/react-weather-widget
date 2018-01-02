@@ -4,8 +4,10 @@ import WeatherIcon from '../WeatherIcon/WeatherIcon'
 
 import './CurrentWeather.styles.css'
 
+import { Unit } from '../../models'
+
 interface CurrentWeatherProps {
-  unit: 'C' | 'F'
+  unit: Unit
   city: string
 }
 
