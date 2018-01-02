@@ -1,6 +1,6 @@
 export interface ForecastDayData {
-  high: number
-  low: number
+  high: Temperature
+  low: Temperature
   description: string
 }
 
