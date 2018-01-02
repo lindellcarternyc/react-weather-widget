@@ -2,8 +2,10 @@ import * as React from 'react'
 
 import './ForecastDay.styles.css'
 
-import * as models from '../../models'
 import WeatherIcon from '../WeatherIcon/WeatherIcon'
+
+import * as models from '../../models'
+
 interface ForecastDayProps {
   unit: models.Unit
   forecastday: models.ForecastDay
