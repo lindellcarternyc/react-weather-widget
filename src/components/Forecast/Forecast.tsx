@@ -6,7 +6,7 @@ import ForecastDay from './ForecastDay'
 
 import * as models from '../../models'
 interface ForecastProps {
-  unit: 'C' | 'F'
+  unit: models.Unit
   forecast: models.Forecast
 }
 
