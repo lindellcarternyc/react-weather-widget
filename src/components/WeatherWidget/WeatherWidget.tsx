@@ -13,7 +13,7 @@ import './WeatherWidget.styles.css'
 interface WeatherWidgetProps {
   updated: moment.Moment
   city: string
-  unit: 'C' | 'F'
+  unit: models.Unit
   forecast?: models.Forecast
 }
 
