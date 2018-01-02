@@ -8,15 +8,16 @@ import { MOCK_DATA  } from './mocks'
 
 const mockData = MOCK_DATA()
 
+import { Locator } from './locator'
+import { WeatherService, Forecast, } from './weather-service'
+
 interface AppState {
   updated: moment.Moment
   dt: string
   position?: Position
-  city?: string
+  city?: string,
+  forecast?: Forecast
 }
-
-import { Locator } from './locator'
-import { WeatherService } from './weather-service'
 
 class App extends React.Component<{}, AppState> {
   private locator: Locator
@@ -34,32 +35,58 @@ class App extends React.Component<{}, AppState> {
   }
 
   componentDidMount() {
-    this.locator.getPosition()
-      .then(pos => {
-        this.weatherService = new WeatherService(pos)
-        this.locator.getCityName(pos)
-          .then(res => {
-            const position = pos
-            const city = res as string
-            this.setState({
+    this.updateLocation()
+      .then(() => {
+        const position = this.state.position!
+        this.weatherService = new WeatherService(position)
+        this.updateForecast()
+      })
+      .catch()
+  }
+
+  updateLocation(): Promise<'success'> {
+    return new Promise<'success'>((resolve, reject) => {
+      this.locator.getPosition()
+      .then(position => {
+        this.locator.getCityName(position)
+        .then((city) => {
+          const updated = moment()
+          this.setState(
+            {
+              updated,
               position,
-              city
-            })
-            this.setState(
-              {
-                position,
-                city
-              },
-              () => {
-                this.getWeather()
-              }
-            )
-          })
-          .catch()
+              city: city as string
+            },
+            () => resolve('success')
+        )
+        })
+        .catch(err => {
+          reject(err)
+        })
       })
       .catch(err => {
-        console.warn(err)
+        reject(err)
       })
+    })
+  }
+
+  updateForecast = (): Promise<'success'> => {
+    return new Promise<'success'>((resolve, reject) => {
+      this.weatherService.getForecast()
+      .then(forecast => {
+        const updated = moment()
+        this.setState(
+          {
+            updated,
+            forecast
+          },
+          () => resolve('success')
+      )
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
   }
 
   getWeather() {
