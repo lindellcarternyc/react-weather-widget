@@ -8,6 +8,7 @@ import { Unit } from '../../models'
 interface WeatherWidgetHeaderProps {
   updated: moment.Moment
   unit: Unit
+  toggleUnit: () => void
 }
 
 interface HeaderState {
@@ -34,14 +35,19 @@ class WeatherWidgetHeader extends React.Component<WeatherWidgetHeaderProps, Head
   }
 
   render() {
-    const { updated, unit } = this.props
+    const { updated, unit, toggleUnit } = this.props
     const { now } = this.state
     const elapsed = updated.from(now)
     return (
       <div className='weather-widget__header'>
           <p className='weather-widget__header--icon'>L</p>
           <p className='weather-widget__header--info'>Weather * Updated {elapsed}</p>
-        <button className='weather-widget__header--button'>{unit}</button>
+        <button 
+          className='weather-widget__header--button'
+          onClick={toggleUnit}
+        >
+          {unit}
+        </button>
       </div>
     )
   }
