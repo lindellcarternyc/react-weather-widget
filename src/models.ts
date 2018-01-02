@@ -12,3 +12,8 @@ export interface ForecastDay {
 export interface Forecast {
   days: ForecastDay[]
 }
+
+export enum Unit {
+  C = 'C',
+  F = 'F'
+}
