@@ -6,13 +6,14 @@ import { WeatherWidget } from './components'
 
 import { Locator } from './locator'
 import { WeatherService } from './weather-service'
-import { Forecast, ForecastDay } from './models'
+import { Forecast, ForecastDay, Unit } from './models'
 
 interface AppState {
   updated: moment.Moment
   position?: Position
   city?: string,
   forecast?: Forecast
+  unit: Unit
 }
 
 class App extends React.Component<{}, AppState> {
@@ -25,7 +26,8 @@ class App extends React.Component<{}, AppState> {
     this.locator = new Locator()
 
     this.state = {
-      updated: moment()
+      updated: moment(),
+      unit: Unit.F
     }
   }
 
@@ -100,13 +102,13 @@ class App extends React.Component<{}, AppState> {
   }
 
   render() {
-    const { updated, city, forecast } = this.state
+    const { updated, city, forecast, unit } = this.state
     return (
       <div className='App'>
         <WeatherWidget 
           city={city || 'Loading...'}
           updated={updated}
-          unit='F'
+          unit={unit}
           forecast={forecast} 
         />
       </div>
