@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import './WeatherIcon.styles.css'
-// const icon = require('./png/cloud.png')
 
 const ICON_NAMES = [
   'cloud', 'cloudy-night', 'cloudy', 'lightning', 'lightning-1',
@@ -14,8 +13,14 @@ const ICONS: {[key: string]: string} = { }
 ICON_NAMES.forEach(name => {
   ICONS[name] = require(`./png/${name}.png`)
 })
+
+enum IconSize {
+  small =  'small',
+  large = 'large'
+}
+
 interface Props {
-  size: 'small' | 'large'
+  size: IconSize
   name: string
 }
 
