@@ -102,8 +102,21 @@ class App extends React.Component<{}, AppState> {
   }
 
   toggleUnit = () => {
-    const { unit } = this.state
-    this.setState({unit: toggleUnit(unit)})
+    const { unit, forecast } = this.state
+
+    if (forecast !== undefined) {
+      const days = forecast.days
+      days.forEach(day => {
+        const data = day.data
+        data.high.toggleUnit()
+        data.low.toggleUnit()
+
+        day.data = data
+      })
+      this.setState({unit: toggleUnit(unit), forecast})
+    } else {
+      return
+    }
   }
 
   render() {
