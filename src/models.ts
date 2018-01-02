@@ -25,3 +25,33 @@ export const toggleUnit = (unit: Unit): Unit => {
     return Unit.C
   }
 }
+
+export class Temperature {
+  unit: Unit
+  private temp: number
+
+  static toggleUnit(t: Temperature): void {
+    const temp = t.unit === Unit.C ?
+      Temperature.CtoF(t.temp) :
+      Temperature.FtoC(t.temp)
+    const unit = toggleUnit(t.unit)
+    t.temp = temp
+    t.unit = unit
+  }
+
+  private static FtoC = (F: number): number => {
+    return 0
+  }
+  private static CtoF = (C: number): number => {
+    return 0
+  }
+
+  constructor(temp: number, unit: Unit) {
+    this.unit = unit
+    this.temp = temp
+  }
+
+  toFixed(digits: number = 0): string {
+    return this.temp.toFixed(digits)
+  }
+}
