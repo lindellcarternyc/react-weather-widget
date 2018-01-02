@@ -2,19 +2,47 @@ import * as React from 'react'
 
 import './WeatherWidgetHeader.styles.css'
 
+import * as moment from 'moment'
+
 interface WeatherWidgetHeaderProps {
-  updated: string
+  updated: moment.Moment
   unit: 'C' | 'F'
 }
 
-const WeatherWidgetHeader = (props: WeatherWidgetHeaderProps) => {
-  const { updated, unit } = props
-  return (
-    <div className='weather-widget__header'>
-        <p className='weather-widget__header--icon'>L</p>
-        <p className='weather-widget__header--info'>Weather * Updated {updated}</p>
-      <button className='weather-widget__header--button'>{unit}</button>
-    </div>
-  )
+interface HeaderState {
+  now: moment.Moment
+}
+
+class WeatherWidgetHeader extends React.Component<WeatherWidgetHeaderProps, HeaderState> {
+  state = {
+    now: moment()
+  }
+
+  timer?: number
+
+  componentDidMount() {
+    this.timer = window.setInterval(
+      this.tick,
+      1000
+    )
+  }
+
+  tick = () => {
+    const now = moment()
+    this.setState({now})
+  }
+
+  render() {
+    const { updated, unit } = this.props
+    const { now } = this.state
+    const elapsed = updated.from(now)
+    return (
+      <div className='weather-widget__header'>
+          <p className='weather-widget__header--icon'>L</p>
+          <p className='weather-widget__header--info'>Weather * Updated {elapsed}</p>
+        <button className='weather-widget__header--button'>{unit}</button>
+      </div>
+    )
+  }
 }
 export default WeatherWidgetHeader
