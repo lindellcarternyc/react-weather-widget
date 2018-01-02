@@ -14,7 +14,7 @@ ICON_NAMES.forEach(name => {
   ICONS[name] = require(`./png/${name}.png`)
 })
 
-enum IconSize {
+export enum IconSize {
   small =  'small',
   large = 'large'
 }
