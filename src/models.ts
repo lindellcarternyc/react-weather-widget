@@ -1,8 +1,12 @@
+export interface ForecastDayData {
+  high: number
+  low: number
+  description: string
+}
+
 export interface ForecastDay {
   name: string // Day of the week
-  high: number // High temp
-  low: number // Low temp
-  conditions: string // Used to get icon name
+  data: ForecastDayData
 }
 
 export interface Forecast {
