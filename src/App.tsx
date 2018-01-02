@@ -6,7 +6,7 @@ import { WeatherWidget } from './components'
 
 import { Locator } from './locator'
 import { WeatherService } from './weather-service'
-import { Forecast, ForecastDay, Unit } from './models'
+import { Forecast, ForecastDay, Unit, toggleUnit } from './models'
 
 interface AppState {
   updated: moment.Moment
@@ -101,6 +101,11 @@ class App extends React.Component<{}, AppState> {
     })
   }
 
+  toggleUnit = () => {
+    const { unit } = this.state
+    this.setState({unit: toggleUnit(unit)})
+  }
+
   render() {
     const { updated, city, forecast, unit } = this.state
     return (
@@ -110,6 +115,7 @@ class App extends React.Component<{}, AppState> {
           updated={updated}
           unit={unit}
           forecast={forecast} 
+          toggleUnit={this.toggleUnit}
         />
       </div>
     )
