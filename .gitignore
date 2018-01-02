@@ -3,6 +3,9 @@
 # create-react-app artifacts
 __README.md
 
+# Private keys
+/src/constants.ts
+
 # dependencies
 /node_modules
 
