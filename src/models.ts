@@ -40,10 +40,10 @@ export class Temperature {
   }
 
   private static FtoC = (F: number): number => {
-    return 0
+    return (F - 32.0) * (5.0 / 9.0)
   }
   private static CtoF = (C: number): number => {
-    return 0
+    return (C * 9.0 / 5.0) + 32.0
   }
 
   constructor(temp: number, unit: Unit) {
@@ -53,5 +53,9 @@ export class Temperature {
 
   toFixed(digits: number = 0): string {
     return this.temp.toFixed(digits)
+  }
+
+  toggleUnit() {
+    Temperature.toggleUnit(this)
   }
 }
