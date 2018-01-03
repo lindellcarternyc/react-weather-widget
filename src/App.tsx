@@ -20,6 +20,7 @@ interface AppState {
 class App extends React.Component<{}, AppState> {
   private locator: Locator
   private weatherService: WeatherService
+  private _tick?: number
 
   constructor() {
     super({})
@@ -32,6 +33,9 @@ class App extends React.Component<{}, AppState> {
     }
   }
 
+  tick() {
+    console.dir('tick')
+  }
   componentDidMount() {
     this.updateLocation()
       .then(() => {
@@ -39,6 +43,11 @@ class App extends React.Component<{}, AppState> {
         this.weatherService = new WeatherService(position)
         this.updateCurrentWeather()
         this.updateForecast()
+
+        this._tick = window.setInterval(
+          this.tick,
+          1000
+        )
       })
       .catch()
   }
