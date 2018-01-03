@@ -21,12 +21,20 @@ export enum IconSize {
 
 interface Props {
   size: IconSize
-  name: string
   description: string
 }
 
+const getIconNameForDescription = (descripion: string): string => {
+  switch (descripion) {
+    default:
+      return 'sun'
+  }
+}
+
 const WeatherIcon = (props: Props) => {
-  const { size, name } = props
+  const { size, description } = props
+  const name = getIconNameForDescription(description)
+  
   const icon = ICONS[name]
 
   const className = size
