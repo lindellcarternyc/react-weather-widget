@@ -36,6 +36,7 @@ class App extends React.Component<{}, AppState> {
       .then(() => {
         const position = this.state.position!
         this.weatherService = new WeatherService(position)
+        this.updateCurrentWeather()
         this.updateForecast()
       })
       .catch()
@@ -98,6 +99,18 @@ class App extends React.Component<{}, AppState> {
       .catch(err => {
         reject(err)
       })
+    })
+  }
+
+  updateCurrentWeather = (): Promise<void> => {
+    return new Promise<void>((resolve, reject) => {
+      this.weatherService.getCurrentWeather()
+        .then(data => {
+          console.dir(data)
+        })
+        .catch(err => {
+          throw err
+        })
     })
   }
 

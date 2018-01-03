@@ -27,6 +27,10 @@ export class WeatherService {
       axios.get(url)
         .then(response => {
           console.dir(response)
+          const data = response.data
+          const { main } = data
+          const temp = new Temperature(main.temp, Unit.F)
+          resolve({temp})
         })
         .catch(err =>
           reject(err)
