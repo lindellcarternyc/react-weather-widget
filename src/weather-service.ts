@@ -11,9 +11,6 @@ export class WeatherService {
 
   constructor(position: Position) {
     this.position = position
-    // tslint:disable-next-line:no-console
-    console.log('created weather service')
-    console.dir(this.position)
   }
 
   getForecast(): Promise<ForecastDayData[]> {
