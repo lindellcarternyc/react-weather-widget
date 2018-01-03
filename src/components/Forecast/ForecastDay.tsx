@@ -14,11 +14,11 @@ interface ForecastDayProps {
 const ForecastDay = (props: ForecastDayProps) => {
   const { unit, forecastday} = props
   const { name, data } = forecastday
-  const { high, low } = data
+  const { high, low, description } = data
   return (
     <div className='forecast--day'>
       <p className='forecast--day--name'>{name}</p>
-      <WeatherIcon size={IconSize.small} name='windy'/>
+      <WeatherIcon size={IconSize.small} description={description}/>
       <p className='forecast--day--hi-temp'>{high.toFixed(0)}&deg;{unit}</p>
       <p className='forecast--day--lo-temp'>{low.toFixed(0)}&deg;{unit}</p>
     </div>
