@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import API_KEY from './constants'
 
-import { ForecastDayData, Unit, Temperature }  from './models'
+import { ForecastDayData, Unit, Temperature, CurrentWeatherData }  from './models'
 
 export class WeatherService {
   private position: Position
@@ -13,11 +13,29 @@ export class WeatherService {
     this.position = position
   }
 
-  getForecast(): Promise<ForecastDayData[]> {
-    const { coords } = this.position
-    const { latitude, longitude } = coords
+  positionParam = (): string => {
+    const { latitude , longitude } = this.position.coords
+    return `lat=${latitude}&lon=${longitude}`
+  }
 
-    const positionParam = `lat=${latitude}&lon=${longitude}`
+  getCurrentWeather = (): Promise<CurrentWeatherData> => {
+    return new Promise<CurrentWeatherData>((resolve, reject) => {
+      const positionParam = this.positionParam()
+      const urlBase = 'http://api.openweathermap.org/data/2.5/weather?'
+      const url = urlBase + `${positionParam}&units=imperial&APPID=${this.apiKey}`
+      
+      axios.get(url)
+        .then(response => {
+          console.dir(response)
+        })
+        .catch(err =>
+          reject(err)
+        )
+    })
+  }
+
+  getForecast(): Promise<ForecastDayData[]> {
+    const positionParam = this.positionParam()
     const urlBase = 'http://api.openweathermap.org/data/2.5/forecast/daily?'
     const url =  urlBase + `${positionParam}&units=imperial&cnt=5&APPID=${this.apiKey}`
     
@@ -43,9 +61,5 @@ export class WeatherService {
         reject(err)
       })
     })
-  }
-
-  getCurrentWeather() {
-    return
   }
 }
