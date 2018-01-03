@@ -6,7 +6,7 @@ import { WeatherWidget } from './components'
 
 import { Locator } from './locator'
 import { WeatherService } from './weather-service'
-import { Forecast, ForecastDay, Unit, toggleUnit } from './models'
+import { CurrentWeatherData, Forecast, ForecastDay, Unit, toggleUnit } from './models'
 
 interface AppState {
   updated: moment.Moment
@@ -14,6 +14,7 @@ interface AppState {
   city?: string,
   forecast?: Forecast
   unit: Unit
+  currentWeather?: CurrentWeatherData
 }
 
 class App extends React.Component<{}, AppState> {
@@ -106,7 +107,7 @@ class App extends React.Component<{}, AppState> {
     return new Promise<void>((resolve, reject) => {
       this.weatherService.getCurrentWeather()
         .then(data => {
-          console.dir(data)
+          this.setState({currentWeather: data})
         })
         .catch(err => {
           throw err
@@ -133,14 +134,15 @@ class App extends React.Component<{}, AppState> {
   }
 
   render() {
-    const { updated, city, forecast, unit } = this.state
+    const { updated, city, forecast, unit, currentWeather } = this.state
     return (
       <div className='App'>
         <WeatherWidget 
           city={city || 'Loading...'}
           updated={updated}
           unit={unit}
-          forecast={forecast} 
+          forecast={forecast}
+          currentWeather={currentWeather}
           toggleUnit={this.toggleUnit}
         />
       </div>
