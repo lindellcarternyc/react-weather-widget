@@ -59,3 +59,7 @@ export class Temperature {
     Temperature.toggleUnit(this)
   }
 }
+
+export interface CurrentWeatherData {
+  temp: Temperature
+}
