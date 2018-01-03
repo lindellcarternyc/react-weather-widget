@@ -35,10 +35,11 @@ class App extends React.Component<{}, AppState> {
     }
   }
 
-  tick() {
+  tick = () => {
     const now = moment()
     this.setState({now})
   }
+
   componentDidMount() {
     this.updateLocation()
       .then(() => {
@@ -53,6 +54,12 @@ class App extends React.Component<{}, AppState> {
         )
       })
       .catch()
+  }
+
+  elapsed(): string {
+    const { updated, now } = this.state
+    const elapsedTime = updated.from(now)
+    return elapsedTime
   }
 
   updateLocation(): Promise<void> {
@@ -153,6 +160,7 @@ class App extends React.Component<{}, AppState> {
         <WeatherWidget 
           city={city || 'Loading...'}
           updated={updated}
+          elapsed={this.elapsed()}
           unit={unit}
           forecast={forecast}
           currentWeather={currentWeather}
