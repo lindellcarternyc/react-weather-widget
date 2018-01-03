@@ -20,6 +20,9 @@ interface Client {
 }
 
 import API_KEY from './constants'
+import axios from 'axios'
+
+import { Coordinates } from './models'
 
 export class Locator {
   private client: Client
@@ -34,25 +37,51 @@ export class Locator {
     // client.reverseGeocode()
   }
 
-  getPosition(): Promise<Position> {
-    return new Promise<Position>((resolve, reject) => {
+  getPosition(ipFlag: boolean = true): Promise<Coordinates> {
+    return new Promise<Coordinates>((resolve, reject) => {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(
           (position => {
-            resolve(position)
+            resolve(position.coords)
           }),
-          (err => {
-            reject(err)
+          (geolocationError => {
+            console.dir(geolocationError)
+            this.getIPLocation()
+              .then(coordinates => {
+                resolve(coordinates)
+              })
+              .catch(ipLocationError => {
+                reject(ipLocationError)
+              })
           })
         )
-      } else {
-        reject('No geolocation')
       }
     })
   }
 
-  getCityName(position: Position): Promise<String> {
-    const { coords } = position
+  getIPLocation(): Promise<Coordinates> {
+    return new Promise<Coordinates>((resolve, reject) => {
+      // Your API key here
+      const key = API_KEY.IP_INFO
+      const url = `http://ipinfo.io?token=${key}`
+
+      axios.get(url)
+        .then(response => {
+          const loc = response.data.loc as string
+          const [latitude, longitude] = loc.split(',').map(l => parseFloat(l))
+          const coords: Coordinates = {
+            latitude,
+            longitude
+          }
+          resolve(coords)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+  }
+
+  getCityName(coords: Coordinates): Promise<String> {
     const { latitude, longitude } = coords
     const latlng = `${latitude},${longitude}`
     return new Promise<String>((resolve, reject) => {
