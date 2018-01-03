@@ -19,7 +19,7 @@ const CurrentWeather = (props: CurrentWeatherProps) => {
         <p>8&deg;{unit} in {city}</p>
         <p>Clear</p>
       </div>
-      <WeatherIcon size={IconSize.large} name='moon'/>
+      <WeatherIcon size={IconSize.large} description=''/>
     </div>
   )
 }
