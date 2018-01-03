@@ -62,4 +62,5 @@ export class Temperature {
 
 export interface CurrentWeatherData {
   temp: Temperature
+  description: string
 }
