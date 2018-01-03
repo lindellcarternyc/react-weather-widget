@@ -50,7 +50,7 @@ class App extends React.Component<{}, AppState> {
 
         this._tick = window.setInterval(
           this.tick,
-          5000
+          2500
         )
       })
       .catch()
