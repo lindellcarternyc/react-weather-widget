@@ -34,10 +34,9 @@ export class Locator {
       // 'Your key here'
       key: API_KEY.GOOGLE_MAPS
     })
-    // client.reverseGeocode()
   }
 
-  getPosition(ipFlag: boolean = true): Promise<Coordinates> {
+  getPosition(): Promise<Coordinates> {
     return new Promise<Coordinates>((resolve, reject) => {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(
