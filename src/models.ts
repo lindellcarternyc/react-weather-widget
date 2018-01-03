@@ -64,3 +64,8 @@ export interface CurrentWeatherData {
   temp: Temperature
   description: string
 }
+
+export interface Coordinates {
+  latitude: number
+  longitude: number
+}
