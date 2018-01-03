@@ -2,19 +2,19 @@ import axios from 'axios'
 
 import API_KEY from './constants'
 
-import { ForecastDayData, Unit, Temperature, CurrentWeatherData }  from './models'
+import { ForecastDayData, Unit, Temperature, CurrentWeatherData, Coordinates }  from './models'
 
 export class WeatherService {
-  private position: Position
+  private coordinates: Coordinates
   // Your key here
   private apiKey = API_KEY.OPEN_WEATHER
 
-  constructor(position: Position) {
-    this.position = position
+  constructor(coordinates: Coordinates) {
+    this.coordinates = coordinates
   }
 
   positionParam = (): string => {
-    const { latitude , longitude } = this.position.coords
+    const { latitude , longitude } = this.coordinates
     return `lat=${latitude}&lon=${longitude}`
   }
 
