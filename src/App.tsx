@@ -6,12 +6,15 @@ import { WeatherWidget } from './components'
 
 import { Locator } from './locator'
 import { WeatherService } from './weather-service'
-import { CurrentWeatherData, Forecast, ForecastDay, Unit, toggleUnit } from './models'
+import { 
+  CurrentWeatherData, Forecast, ForecastDay, Unit, toggleUnit,
+  Coordinates
+} from './models'
 
 interface AppState {
   updated: moment.Moment
   now: moment.Moment
-  position?: Position
+  coordinates?: Coordinates
   city?: string,
   forecast?: Forecast
   unit: Unit
@@ -43,8 +46,8 @@ class App extends React.Component<{}, AppState> {
   componentDidMount() {
     this.updateLocation()
       .then(() => {
-        const position = this.state.position!
-        this.weatherService = new WeatherService(position)
+        const coordinates = this.state.coordinates!
+        this.weatherService = new WeatherService(coordinates)
         this.updateCurrentWeather()
         this.updateForecast()
 
@@ -65,14 +68,14 @@ class App extends React.Component<{}, AppState> {
   updateLocation(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       this.locator.getPosition()
-      .then(position => {
-        this.locator.getCityName(position)
+      .then(coordinates => {
+        this.locator.getCityName(coordinates)
         .then((city) => {
           const updated = moment()
           this.setState(
             {
               updated,
-              position,
+              coordinates,
               city: city as string
             },
             () => resolve()
