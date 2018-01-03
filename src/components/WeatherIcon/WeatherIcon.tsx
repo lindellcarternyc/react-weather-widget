@@ -25,16 +25,26 @@ interface Props {
 }
 
 const getIconNameForDescription = (descripion: string): string => {
-  switch (descripion) {
-    default:
-      return 'sun'
+  const des = descripion.toLowerCase()
+  if (des.match(/snow/)) {
+    return 'snowflake'
+  } else if (des.match(/rain/)) {
+    return 'rain'
+  } else if (des.match(/cloud/)) {
+    return 'cloud'
+  } else if (des.match(/storm/)) {
+    return 'storm'
+  } else if (des.match(/wind/)) {
+    return 'wind'
+  } else {
+    return 'sun'
   }
 }
 
 const WeatherIcon = (props: Props) => {
   const { size, description } = props
   const name = getIconNameForDescription(description)
-  
+
   const icon = ICONS[name]
 
   const className = size
