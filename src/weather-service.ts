@@ -16,9 +16,11 @@ export class WeatherService {
   getForecast(): Promise<ForecastDayData[]> {
     const { coords } = this.position
     const { latitude, longitude } = coords
+
     const positionParam = `lat=${latitude}&lon=${longitude}`
-    // tslint:disable-next-line:max-line-length
-    const url = `http://api.openweathermap.org/data/2.5/forecast/daily?${positionParam}&units=imperial&cnt=5&APPID=${this.apiKey}`
+    const urlBase = 'http://api.openweathermap.org/data/2.5/forecast/daily?'
+    const url =  urlBase + `${positionParam}&units=imperial&cnt=5&APPID=${this.apiKey}`
+    
     return new Promise<ForecastDayData[]>((resolve, reject) => {
       axios.get(url)
       .then(response => {
