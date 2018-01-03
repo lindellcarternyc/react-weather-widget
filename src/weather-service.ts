@@ -30,7 +30,8 @@ export class WeatherService {
           const data = response.data
           const { main } = data
           const temp = new Temperature(main.temp, Unit.F)
-          resolve({temp})
+          const description = data.weather[0].main
+          resolve({temp, description})
         })
         .catch(err =>
           reject(err)
