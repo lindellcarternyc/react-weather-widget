@@ -10,6 +10,7 @@ import { CurrentWeatherData, Forecast, ForecastDay, Unit, toggleUnit } from './m
 
 interface AppState {
   updated: moment.Moment
+  now: moment.Moment
   position?: Position
   city?: string,
   forecast?: Forecast
@@ -29,12 +30,14 @@ class App extends React.Component<{}, AppState> {
 
     this.state = {
       updated: moment(),
+      now: moment(),
       unit: Unit.F
     }
   }
 
   tick() {
-    console.dir('tick')
+    const now = moment()
+    this.setState({now})
   }
   componentDidMount() {
     this.updateLocation()
@@ -157,6 +160,12 @@ class App extends React.Component<{}, AppState> {
         />
       </div>
     )
+  }
+
+  componentWillUnmount() {
+    if (this._tick) {
+      window.clearInterval(this._tick)
+    }
   }
 }
 
